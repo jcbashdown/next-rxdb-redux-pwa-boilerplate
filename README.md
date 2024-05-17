@@ -1,23 +1,19 @@
-# Progressive Web App Example
+# Next RxDB Redux PWA Boilerplate 
 
-This example uses [`next-pwa`](https://github.com/shadowwalker/next-pwa) to create a progressive web app (PWA) powered by [Workbox](https://developers.google.com/web/tools/workbox/).
+This example originally uses [`next-pwa`](https://github.com/shadowwalker/next-pwa) to create a progressive web app (PWA) powered by [Workbox](https://developers.google.com/web/tools/workbox/).
 
-## Deploy your own
+# How to use this as a boilerplate
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+- This repo demonstrates using next-pwa with rxdb and redux. This might be overkill in some ways and it's not totally clear yet how best to keep redux in sync with rxdb
+- It shows loading initial data (from a fixture here but in prod it would be a server). Syncing it to redux store state and using the info in a component
+- It includes some tests that don't currently pass (taken from an older project) but show how they could work
+- It uses the app router
+- It demonstrates a Next server route
+- It uses tailwind
+- TS is reasonably well set up
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/progressive-web-app&project-name=progressive-web-app&repository-name=progressive-web-app)
+There is a fair bit that needs cleaning up if starting a new project with this template but it's small enough to understand the project and do this - it's a good example
 
-## How to use
+Please note that with this approach, the initial render on the server-side will not have access to the data fetched from RxDB. If you need to pre-populate the store with data on the server-side, you'll need to find alternative ways to fetch and serialize the data during SSR and hydrate the store on the client-side.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
-
-```bash
-npx create-next-app --example progressive-web-app progressive-web-app
-# or
-yarn create next-app --example progressive-web-app progressive-web-app
-# or
-pnpm create next-app --example progressive-web-app progressive-web-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+This currently doesn't include any server sync/replication of rxdb. This is a challenge but the notes-app-next-pwa repo should eventually give and example of doing this robustly (especially if we put a backend in that repo - use a monorepo approach)
